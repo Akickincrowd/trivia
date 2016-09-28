@@ -14,6 +14,11 @@ this.index = function(callback){
 		callback(returned_data.data);
 	})	
 }
+this.getUser = function(callback){
+	$http.get('/user').then(function(returned_data){
+		callback(returned_data.data);
+	})
+}
 
 }
 return new UsersFactory();

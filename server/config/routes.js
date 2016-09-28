@@ -11,4 +11,5 @@ module.exports = function(app){
   // // app.delete('/friends/:id', friends.delete);
   app.get('/login', users.login);
   // app.post('/posts', posts.create);
+  app.get('/user', users.getCurrentUser);
 }

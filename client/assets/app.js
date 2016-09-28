@@ -24,9 +24,6 @@ myApp.config(function($routeProvider){
 	.when('/question5', {
 		templateUrl: 'partials/question5.html'
 	})
-	.when('/login', {
-		templateUrl: 'partials/login.html'
-	})
 	.when('/', {
 		templateUrl: 'partials/index.html'
 	})

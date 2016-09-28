@@ -3,19 +3,21 @@ var bodyParser = require('body-parser');
 var path = require('path');
 approot     = __dirname;
 var app = express();
+var session = require('express-session');
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded());
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
 
-// app.use(session({
-//   secret:'somesecrettokenhere',
-//   resave: false,
-//   saveUninitialized: true,
-//   maxAge: 5000000
-// }));
+app.use(session({
+  secret:'somesecrettokenhere',
+  resave: false,
+  saveUninitialized: true,
+  maxAge: 5000000
+}));
 
 
 
