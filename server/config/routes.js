@@ -7,7 +7,7 @@ module.exports = function(app){
   app.get('/users', users.index);
   // app.get('/posts/:id', users.show);
   app.post('/users', users.create);
-  // // app.put('/friends/:id', friends.update);
+  app.put('/users/:id', users.update);
   // // app.delete('/friends/:id', friends.delete);
   app.get('/login', users.login);
   // app.post('/posts', posts.create);

@@ -10,3 +10,15 @@
 
 {{correct}} {{count}}
 </div>
+
+<div ng-controller= "usersController">
+	<div ng-repeat= "x in all_users">
+		Name is {{x.name}}
+		<!-- Results are {{x.results}}
+		More results are -->
+		<div ng-repeat = "y in x.results">
+			Score is {{y.score}}
+			Test name is {{y.test_name}}
+		</div>	
+	</div>
+</div>	

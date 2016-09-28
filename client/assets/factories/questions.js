@@ -38,14 +38,15 @@ this.index = function(callback){
 
 this.submit = function(answer){
 	// $cookies.
+	var id = '57ec01e718c97071a3167698';
 	console.log(answer);
 	console.log(question);
 	if ( answers[question] == answer){
 	score+=1;
 	// console.log('correct')
 	}
-	console.log(score);
-	$http.puts('/scores', score).then(function(returned_data){
+	var newScore = {score: score, test_name:"spelling"}
+	$http.put('/users/'+ id, newScore).then(function(returned_data){
 		console.log(returned_data);
 	})
 }

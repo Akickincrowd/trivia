@@ -9,10 +9,8 @@ var UserSchema= new mongoose.Schema({
 	required: true,
 	unique: true
 	},
-	score: [
-		{
-			
-		}
+	results: [
+		{ test_name: String, score: Number}
 	]
 	// posts: [{type: Schema.Types.ObjectId, ref: 'Posts'}]
 })
