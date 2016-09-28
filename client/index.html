@@ -12,14 +12,15 @@
 
 <!-- End Bower Components -->
 <script src="assets/controllers/users.js" charset="utf-8"></script>
- // <script src="assets/controllers/questions.js" charset="utf-8"></script>
+<script src="assets/controllers/questions.js" charset="utf-8"></script>
+<script src="assets/controllers/sessionController.js" charset="utf-8"></script>
 <script src="assets/factories/users.js" charset="utf-8"></script>
 <script src="assets/factories/questions.js" charset="utf-8"></script>
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
-// <script type ="text/javascript">
+<script type ="text/javascript">
 
 $(document).ready(function (){
             // this triggers the connection event in our server!
@@ -57,9 +58,12 @@ overflow: scroll;
     <button> Test button </button>
    <!--   <a href= "#/users"> Link to users </a> <br>
      <a href= "#/"> Link to Home </a> -->
-      
+
 <div id= "output">
 output div
+</div>
+<div ng-controller="sessionController">
+{{currentUser}}
 </div>
 <a href= "/#/question1"> Question 1 </a>
 <form id= 'form1'>

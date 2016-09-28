@@ -6,6 +6,10 @@ function UsersController(){
 this.login = function(req, res){
 	res.render("login.ejs")
 }
+this.getCurrentUser = function(req, res){
+	var user = req.session.user;
+	res.json(user);
+}
 
 this.index = function(req,res){
 	console.log(req.body);	
@@ -19,17 +23,29 @@ this.index = function(req,res){
 }  
 
 this.create = function(req,res){
-	console.log(req.body);
-	console.log(req, "this is the request")
-	var user= new User(req.body);
-	user.save(function(err, success){
+	User.findOne({name:req.body.name}, function(err, user){
 		if(err){
 			console.log(err);
-		}else{
-			res.json(success);
+		} else {
+			console.log('after find one: ', user)
+			if(user == null){
+				var user= new User(req.body);
+				user.save(function(err, success){
+					if(err){
+						console.log(err);
+					}else{
+						req.session.user = success;
+						console.log(req.session.user);
+						res.redirect('/');
+					}
+				})
+			} else {
+				req.session.user = user;
+				console.log(req.session.user);
+				res.redirect('/');
+			}
 		}
 	})
-  // res.json({test: "in create"})
 }   
 
 
