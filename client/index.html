@@ -1,0 +1,77 @@
+<html ng-app='myApp'>
+<head>
+<meta charset="utf-8">
+<title>Awesome Friends</title>
+<!-- Angular from bower_components, otherwise find the CDN -->
+<script src="angular/angular.js" charset="utf-8"></script>
+<script src='angular-route/angular-route.js'></script>
+<script src='angular-cookies/angular-cookies.js'></script>
+<script src="assets/app.js" charset="utf-8"></script>
+
+
+
+<!-- End Bower Components -->
+<script src="assets/controllers/users.js" charset="utf-8"></script>
+ // <script src="assets/controllers/questions.js" charset="utf-8"></script>
+<script src="assets/factories/users.js" charset="utf-8"></script>
+<script src="assets/factories/questions.js" charset="utf-8"></script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+// <script type ="text/javascript">
+
+$(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket = io.connect();
+            // we'll write all the socket stuff after the above line!
+            $('#form1').submit(function (event){
+              event.preventDefault();
+    socket.emit("form_submitted", {name: $("#name").val()});
+});
+
+
+socket.on('server_response', function (info){
+    console.log('The server says: ');
+    console.log(info);
+    $("#output").append("<p>" + info.response + "</p>");
+});
+
+})
+
+
+
+// </script>
+
+<style>
+#output {
+width: 150px;
+height: 150px;
+overflow: scroll;
+}
+</style>
+
+</head>
+  <body>
+
+    <button> Test button </button>
+   <!--   <a href= "#/users"> Link to users </a> <br>
+     <a href= "#/"> Link to Home </a> -->
+      
+<div id= "output">
+output div
+</div>
+<a href= "/#/question1"> Question 1 </a>
+<form id= 'form1'>
+  Name <input id= "name" type="text">
+  <button type= "submit"> Submit </button>
+</form>  
+
+  
+
+
+    <div ng-view= ''>
+    </div>
+    
+  </body>
+</html>

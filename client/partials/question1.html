@@ -1,0 +1,12 @@
+<div ng-controller= "questionsController">
+<h1> Question 1 </h1>
+	<p> What is 2+2 </p>
+<form>
+
+	<input type= "radio" ng-model="newAnswer.answer" value= 'a'> A. 4
+	<input type= "radio" ng-model="newAnswer.answer" value= 'b'> B. 3
+	<button type= "submit" ng-click="check_question()"> Answer </button>
+</form>
+
+{{correct}} {{count}}
+</div>
