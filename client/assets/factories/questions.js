@@ -1,11 +1,5 @@
 myApp.factory('questionsFactory', ['$http', function($http) {
 
-// TODO:
-// FIX SCORE
-// DISPLAY QUESTIONS/ANSWERS AT THE END ALONGSIDE THEIR CHOSEN ANSWER
-// SHOW LEADERBOARD
-// EXPAND QUESTIONS/ANSWER
-
 function QuestionsFactory(){
 var user_answers = [];
 var score = 0;
@@ -17,10 +11,20 @@ var geography = [{question:'How many continents are there on Earth?', options: [
 	{question:'Is the South Pole a continent?', options: ['Yes', 'No', 'Maybe', 'LIES!'], answer:'Yes'},
 	{question:'The Sahara Desert is located amongst which country?', options: ['Bengladesh', 'Yemen', 'Saudi Arabia', 'Mexico', 'Chile', 'Algeria', 'Australia'], answer:'How much?'}];
 
-	var sport = [{question:'How many points is a touchdown?', options: ['1pt', '3pt', '6pt'], answer:'6pt'},
+var sport = [{question:'How many points is a touchdown?', options: ['1pt', '3pt', '6pt'], answer:'6pt'},
 	{question:'What is the most popular sport in USA?', options: ['Baseball', 'Cricket', 'Football', 'Yelling', 'Soccer', 'Basketball'], answer:'Football'},
 	{question:'Who is referred to in the saying, "I wanna be like Mike."', options: ['Mike Tyson', 'Michael Kors', 'Mack the Knife', 'Mack-arena, ahai!', 'Michael Jordan'], answer:'Michael Jordan'},
 	{question:'If NASCAR is a sport, then is "Fast & Furious: Tokyo Drift" a sporting movie?', options: ['Yes', 'No', 'wtf idk lmao'], answer:'wtf idk lmao'}];
+
+var coding = [{question:'{x:y} is what?', options: ['Hash', 'Dictionary', 'Object', 'Curly Brace', 'All the above'], answer:'All the above'},
+	{question:'is HTML a programming language?', options: ['Yes', 'No', 'What is HTML?', 'I wish it was T_T.'], answer:'No'},
+	{question:'What is big O notation?', options: ['An anime mecha', 'Time complexity', 'A letter', 'A number', 'A string'], answer:'Time complexity'},
+	{question:'If the pen is mightier than the sword, is a keyboard mightier than a console?', options: ['Swords are the best', '...depends on the console', 'ALL PENS ALL THE TIME!!!', 'We are all keyboard warriors!', 'Console box best box', 'I use a mobile device T_T.'], answer:'We are all keyboard warriors!'}];
+
+var movies = [{question:'In the 1995 movie "Hackers", what are the protagonists hacking?', options: ['Their future prospects in the industry', 'The NSA', 'Trees', 'Gibson', 'Stanley Parable', 'Their acting futures', 'Our collective tears'], answer:'Gibson'},
+	{question:'What year did "The Matrix" release in US Theatres?', options: ['1996', '1997', '1998', '1999', '2000', '2001', '2002'], answer:'1999'},
+	{question:'"Step Brothers" stars what 2 comedic duo?', options: ['Brangelina', 'Will Farrell/John Reilly', 'Kim/Courtney Kardashian', 'Arnold Schwarzenegger/Danny Devito', 'Keanu Reeves/Sandra Bullock'], answer:'Will Farrell/John Reilly'},
+	{question:"You talkin' to me? You talkin' to me?", options: ['Truck Driver', 'Car Driver', 'Pile Driver', 'Screw Driver', 'Delivery Driver', 'Taxi Driver', 'Cab Driver'], answer:'Taxi Driver'}];
 
 this.getFirstQuestion = function(subject, question_num, callback){
 	user_answers = [];

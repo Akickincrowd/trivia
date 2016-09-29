@@ -1,11 +1,13 @@
 <div ng-controller="resultsController">
 	<div ng-if="test_score == 0">
-	Ah, that's too bad.  Try harder next time?
+	<b><font size="5">{{test_score}}/4.  That's too bad.  Try harder next time?</font></b>
 	</div>
-	<div ng-if="test_score != 0">
-	You got {{test_score}} correct!
+	<div ng-if="test_score > 0 && test_score < 4">
+	<b><font size="5">You got {{test_score}}/4 correct!</font></b>
 	</div>
-	<button ng-click="goHome()">Home</button>
+	<div ng-if="test_score == 4">
+	<b><font size="5">Wow!  You got all 4 correct!</font></b>
+	</div>
 	<table style="background-color: white;">
 		<tr>
 			<th>Question</th>
