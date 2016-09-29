@@ -69,6 +69,14 @@ socket.on('server_response_last_score', function (data){
 // </script>
 
 <style>
+/*
+html{*/
+
+/*background: #8e9eab; 
+background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); 
+background: linear-gradient(to left, #8e9eab , #eef2f3);
+}*/
+
 #output {
 width: 350px;
 height: 350px;
@@ -81,6 +89,9 @@ margin-bottom: 20px;
   margin: auto;
   width: 90%;
   left: 50%;
+
+
+        
 }
 
 #form1, #last_score{
@@ -108,12 +119,18 @@ margin-bottom: 20px;
 
 }
 
+#sports{
+  opacity: .1;
+}
 
 </style>
 
 </head>
 
 <body>
+  <!-- <div id= "sports">
+  <body style="background-image: url('./assets/images/Sports.png'); background-size: 100% 100%;">
+</div> -->
 <div id= 'container'>
   <div id="menubar">
     <button id="change_user"> Change User </button>

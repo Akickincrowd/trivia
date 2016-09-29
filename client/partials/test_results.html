@@ -3,9 +3,9 @@
 	Ah, that's too bad.  Try harder next time?
 	</div>
 	<div ng-if="test_score != 0">
-	You got {{test_score}} correct!
+	<h3> You got {{test_score}} correct! </h3>
 	</div>
-	<button ng-click="goHome()">Home</button>
+	<!-- <button ng-click="goHome()">Home</button> -->
 	<table style="background-color: white;">
 		<tr>
 			<th>Question</th>
@@ -13,8 +13,10 @@
 			<th>Your Answer</th>
 		</tr>
 		<tr ng-repeat="x in test">
-			<td><b>{{ x.question }}</b></td>
-			<td><b>{{ x.answer }}</b></td>
-			<td><font color="red"><b>{{ results[$index] }}</b></font></td>
+			<td>{{ x.question }}</td>
+			<td>{{ x.answer }}</td> 
+			
+			<td ng-if= "results[$index] == x.answer"> <font> <i> {{ results[$index] }}</i></font> </td>
+			<td ng-if= "results[$index] != x.answer"><font color="red"> <i> {{ results[$index] }}</i> </font></td>
 		</tr>
 	</table></div>
