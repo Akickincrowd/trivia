@@ -15,6 +15,9 @@ myApp.config(function($routeProvider){
 	.when('/', {
 		templateUrl: 'partials/main.html'
 	})
+	.when('/leaderboard', {
+		templateUrl: 'partials/leaderboard.html'
+	})
 	.otherwise({
 		redirectTo: '/'
 	})
