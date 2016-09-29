@@ -14,9 +14,9 @@ $scope.check_question =function(){
 }
 
 $scope.get_score = function(){
-	questionsFactory.get_score(function(score, question){
+	questionsFactory.get_score(function(score){
 		$scope.score = score;
-		$scope.question = question;
+		// $scope.question = question;
 		// console.log($scope.score);
 	})
 }

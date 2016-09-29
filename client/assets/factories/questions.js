@@ -3,8 +3,8 @@ myApp.factory('questionsFactory', ['$http', function($http) {
 function QuestionsFactory(){
 
 var score = 0;
-var question = 1;
-var answers = ['nothing', 'a', 'a', 'a', 'a','a']
+// var question = 1;
+// var answers = ['nothing', 'a', 'a', 'a', 'a','a']
 
 var index = 0;
 var geography = [{question:'how fast am I going?', options: ['30mph', '20mph', '10mph'], answer:'30mph'},
@@ -18,6 +18,7 @@ var geography = [{question:'how fast am I going?', options: ['30mph', '20mph', '
 	{question:'do you even lift?', options: ['Yes', 'No', 'How much?'], answer:'How much?'}];
 
 this.getFirstQuestion = function(subject, question_num, callback){
+
 	var test_version = eval(subject);
 	console.log(test_version[question_num]);
 	callback(test_version[question_num]);
@@ -32,6 +33,8 @@ this.getNextQuestion = function(answer, subject, callback){
 	index +=1;
 	if(index == test_version.length){
 		callback({test_end:'False', test_score:score})
+		score = 0;
+		index = 0;
 	} else {
 	// index = Math.floor(Math.random()*questions.length)
 	callback(test_version[index]);
@@ -58,7 +61,7 @@ this.update_score = function(answer, callback){
 
 this.get_score = function(callback){
 	// console.log(score);
-	callback(score, question);
+	callback(score);
 }
 
 this.create = function(form_data){
