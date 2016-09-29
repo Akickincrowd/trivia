@@ -1,7 +1,16 @@
-<div ng-controller= "questionsController">
-Question: {{ this_question.question }}
+<style>
+	.answers {
+		width: 80%;
+		margin-top: 5%;
+	}
+	.questions {
+		margin-left: 10%;
+	}
+</style>
+<div class="questions" ng-controller= "questionsController">
+<b><font size="6">{{ this_question.question }}</font></b>
 <br>
 	<div ng-repeat="x in this_question.options">
-		<button ng-click="getNextQuestion(x)">{{ x }}</button>
+		<button class="answers" ng-click="getNextQuestion(x)"><font size="3">{{ x }}</font></button>
 	</div>
 </div>

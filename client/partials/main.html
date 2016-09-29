@@ -1,9 +1,18 @@
+<style>
+	.tests {
+		width: 80%;
+		margin-top: 5%;
+		margin-left: 10%;
+	}
+</style>
 <div ng-controller="questionsController">
 
+<button class="tests" ng-click="getQuestion('geography', 0)">Geography</button>
+<button class="tests" ng-click="getQuestion('sport', 0)">Sports</button>
+<button class="tests" ng-click="getQuestion('coding', 0)">Coding</button>
+<button class="tests" ng-click="getQuestion('movies', 0)">Movies</button>
 
-<p><button ng-click="getQuestion('geography', 0)" class= "test_buttons">Geog 1</button></p>
 
-<p><button ng-click="getQuestion('sport', 0)">Sport 1</button></p>
 <div ng-if="test_score">
 	<h1> Your last score was {{test_score}}.  See if you can do better!</h1>
 </div>

@@ -16,8 +16,4 @@ $scope.getResults = function(){
 }
 $scope.getResults();
 
-$scope.goHome = function(){
-	window.location = '#/';
-}
-
 }]);
