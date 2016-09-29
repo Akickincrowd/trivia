@@ -6,15 +6,54 @@ var score = 0;
 var question = 1;
 var answers = ['nothing', 'a', 'a', 'a', 'a','a']
 
-this.update_score = function(answer, callback){
-	// console.log(answers[question]);
-	if ( answers[question] == answer){
-	score+=1;
-	console.log('correct')
+var index = 0;
+var geography = [{question:'how fast am I going?', options: ['30mph', '20mph', '10mph'], answer:'30mph'},
+	{question:'what is my name?', options: ['Dan', 'Josh', 'Kevin'], answer:'Dan'},
+	{question:'what is my favorite color?', options: ['Orange', 'Green', 'Red'], answer:'Orange'},
+	{question:'do you even lift?', options: ['Yes', 'No', 'How much?'], answer:'How much?'}];
+
+	var sport = [{question:'How many points is a touchdown?', options: ['1pt', '3pt', '6pt'], answer:'6pt'},
+	{question:'what is my name?', options: ['Dan', 'Josh', 'Kevin'], answer:'Dan'},
+	{question:'what is my favorite color?', options: ['Orange', 'Green', 'Red'], answer:'Orange'},
+	{question:'do you even lift?', options: ['Yes', 'No', 'How much?'], answer:'How much?'}];
+
+this.getFirstQuestion = function(subject, question_num, callback){
+	var test_version = eval(subject);
+	console.log(test_version[question_num]);
+	callback(test_version[question_num]);
+}
+
+this.getNextQuestion = function(answer, subject, callback){
+	var test_version = eval(subject);
+	if(test_version[index].answer == answer){
+		score+=1;
+		console.log('correct');
 	}
-	question+=1;
-	callback(question);
-	
+	index +=1;
+	if(index == test_version.length){
+		callback({test_end:'False', test_score:score})
+	} else {
+	// index = Math.floor(Math.random()*questions.length)
+	callback(test_version[index]);
+}
+}
+
+
+this.update_score = function(answer, callback){
+	// if ( answers[question] == answer){
+	// 	score+=1;
+	// 	console.log('correct')
+	// }
+	// question+=1;
+	// callback(question);
+	if(test_questions[index].answer == answer){
+		score+=1;
+		console.log('correct');
+	}
+
+	index +=1;
+	// index = Math.floor(Math.random()*questions.length)
+	callback(index);
 }
 
 this.get_score = function(callback){
@@ -38,15 +77,14 @@ this.index = function(callback){
 
 this.submit = function(answer){
 	// $cookies.
-	var id = '57ec01e718c97071a3167698';
 	console.log(answer);
 	console.log(question);
 	if ( answers[question] == answer){
 	score+=1;
 	// console.log('correct')
 	}
-	var newScore = {score: score, test_name:"spelling"}
-	$http.put('/users/'+ id, newScore).then(function(returned_data){
+	console.log(score);
+	$http.puts('/scores', score).then(function(returned_data){
 		console.log(returned_data);
 	})
 }

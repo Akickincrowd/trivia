@@ -1,0 +1,7 @@
+<div ng-controller= "questionsController">
+Question: {{ this_question.question }}
+<br>
+	<div ng-repeat="x in this_question.options">
+		<button ng-click="getNextQuestion(x)">{{ x }}</button>
+	</div>
+</div>
