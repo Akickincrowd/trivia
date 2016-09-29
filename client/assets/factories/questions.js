@@ -3,21 +3,22 @@ myApp.factory('questionsFactory', ['$http', function($http) {
 function QuestionsFactory(){
 
 var score = 0;
-var question = 1;
-var answers = ['nothing', 'a', 'a', 'a', 'a','a']
+// var question = 1;
+// var answers = ['nothing', 'a', 'a', 'a', 'a','a']
 
 var index = 0;
-var geography = [{question:'how fast am I going?', options: ['30mph', '20mph', '10mph'], answer:'30mph'},
-	{question:'what is my name?', options: ['Dan', 'Josh', 'Kevin'], answer:'Dan'},
-	{question:'what is my favorite color?', options: ['Orange', 'Green', 'Red'], answer:'Orange'},
-	{question:'do you even lift?', options: ['Yes', 'No', 'How much?'], answer:'How much?'}];
+var geography = [{question:'How many continents are there on Earth?', options: ['1', '2', '3', '4', '5', '6', '7', '8'], answer:'7'},
+	{question:'What two nations is Mt. Everest located in?', options: ['China/Russia', 'China/Nepal', 'China/India', 'China/Tajikistan'], answer:'China/Nepal'},
+	{question:'Is the South Pole a continent?', options: ['Yes', 'No', 'Maybe', 'LIES!'], answer:'Yes'},
+	{question:'The Saharian Desert is located amongst which country?', options: ['Bengladesh', 'Yemen', 'Saudi Arabia', 'Mexico', 'Chile', 'Algeria', 'Australia'], answer:'How much?'}];
 
 	var sport = [{question:'How many points is a touchdown?', options: ['1pt', '3pt', '6pt'], answer:'6pt'},
-	{question:'what is my name?', options: ['Dan', 'Josh', 'Kevin'], answer:'Dan'},
-	{question:'what is my favorite color?', options: ['Orange', 'Green', 'Red'], answer:'Orange'},
-	{question:'do you even lift?', options: ['Yes', 'No', 'How much?'], answer:'How much?'}];
+	{question:'What is the most popular sport in USA?', options: ['Baseball', 'Cricket', 'Football', 'Yelling', 'Soccer', 'Basketball'], answer:'Football'},
+	{question:'Who is referred to in the saying, "I wanna be like Mike."', options: ['Mike Tyson', 'Michael Kors', 'Mack the Knife', 'Mack-arena, ahai!', 'Michael Jordan'], answer:'Michael Jordan'},
+	{question:'If NASCAR is a sport, then is "Fast & Furious: Tokyo Drift" a sporting movie?', options: ['Yes', 'No', 'wtf idk lmao'], answer:'wtf idk lmao'}];
 
 this.getFirstQuestion = function(subject, question_num, callback){
+
 	var test_version = eval(subject);
 	// console.log(test_version[question_num]);
 	callback(test_version[question_num]);
@@ -32,6 +33,8 @@ this.getNextQuestion = function(answer, subject, callback){
 	index +=1;
 	if(index == test_version.length){
 		callback({test_end:'False', test_score:score})
+		score = 0;
+		index = 0;
 	} else {
 	// index = Math.floor(Math.random()*questions.length)
 	callback(test_version[index]);
@@ -58,7 +61,7 @@ this.update_score = function(answer, callback){
 
 this.get_score = function(callback){
 	// console.log(score);
-	callback(score, question);
+	callback(score);
 }
 
 this.create = function(form_data){
