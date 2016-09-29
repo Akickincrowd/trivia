@@ -9,6 +9,9 @@ myApp.config(function($routeProvider){
 	.when('/question', {
 		templateUrl: 'partials/question.html'
 	})
+	.when('/test_results', {
+		templateUrl: 'partials/test_results.html'
+	})
 	.when('/', {
 		templateUrl: 'partials/main.html'
 	})

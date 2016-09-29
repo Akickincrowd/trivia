@@ -1,5 +1,7 @@
 <div ng-controller="questionsController">
 <p><button ng-click="getQuestion('geography', 0)">Geog 1</button></p>
 <p><button ng-click="getQuestion('sport', 0)">Sport 1</button></p>
-<h1> Your score is {{test_score}} </h1>
+<div ng-if="test_score">
+	<h1> Your last score was {{test_score}}.  See if you can do better!</h1>
+</div>
 </div>

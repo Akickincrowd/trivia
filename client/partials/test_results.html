@@ -1,0 +1,20 @@
+<div ng-controller="resultsController">
+	<div ng-if="test_score == 0">
+	Ah, that's too bad.  Try harder next time?
+	</div>
+	<div ng-if="test_score != 0">
+	You got {{test_score}} correct!
+	</div>
+	<button ng-click="goHome()">Home</button>
+	<table style="background-color: white;">
+		<tr>
+			<th>Question</th>
+			<th>Correct Answer</th>
+			<th>Your Answer</th>
+		</tr>
+		<tr ng-repeat="x in test">
+			<td><b>{{ x.question }}</b></td>
+			<td><b>{{ x.answer }}</b></td>
+			<td><font color="red"><b>{{ results[$index] }}</b></font></td>
+		</tr>
+	</table></div>
