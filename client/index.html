@@ -50,7 +50,12 @@ socket.on('server_response_last_score', function (data){
     
     $("#output").append("<p>" + data.response.name + "'s last score was " + data.response.score + " in " + data.response.test_name + "</p>");
 });
-
+  $('#leader_board').click(function(){
+    window.location.href = '#/leaderboard';
+  });
+  $('#home').click(function(){
+    window.location.href = '#/';
+  });
 
 })
 
@@ -68,6 +73,9 @@ overflow: scroll;
 
 </head>
   <body style="background-image: url('./assets/images/facepalm.png'); background-size: 100% 100%;">
+<b>NAV BAR: </b>
+<button id="home">Home</button>
+<button id="leader_board">Leader Board</button>
 
 
 <div id= "output">

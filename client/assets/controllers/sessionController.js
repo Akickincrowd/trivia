@@ -10,4 +10,7 @@ $scope.getUser = function(){
 }
 $scope.getUser();
 
+// $scope.leaderBoard = function(){
+// 	window.location = '#/leaderboard';
+// }
 }]);
