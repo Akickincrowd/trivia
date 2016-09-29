@@ -47,7 +47,7 @@ socket.on('server_response', function (data){
 socket.on('server_response_last_score', function (data){
     console.log('The server says:', data);
     
-    $("#output").append("<p>" + data.response.name + "'s last score was " + data.response.score + " in " + data.response.test_name + "</p>");
+    $("#output").text("<p>" + data.response.name + "'s last score was " + data.response.score + " in " + data.response.test_name + "</p>").val();
 });
 
 
@@ -59,24 +59,35 @@ socket.on('server_response_last_score', function (data){
 
 <style>
 #output {
-width: 150px;
-height: 150px;
+width: 350px;
+height: 350px;
 overflow: scroll;
+outline: 1px solid black;
+padding-left: 20px;
 }
+#container{
+  margin: auto;
+  width: 720px;
+  left: 50%;
+}
+
+
 </style>
 
 </head>
-  <body style="background-image: url('./assets/images/facepalm.png'); background-size: 100% 100%;">
+<!--   <body style="background-image: url('./assets/images/facepalm.png'); background-size: 100% 100%;"> -->
+<body>
 
+<div id= 'container'>
+  <div id="output">
+    <div id="scrollarea-content"> </div>
+  </div> 
+ <!--  <textarea id ="output">
+  </textarea> -->
 
-<div id= "output">
-output div
-</div>
 <div ng-controller="sessionController">
 
-The last test name is {{currentUser.results[currentUser.results.length-1].test_name}}
-<br>
-The last score is {{currentUser.results[currentUser.results.length-1].score}}
+
 
 <!-- <div ng-repeat= "x in currentUser.results">
   {{x.test_name}} {{x.score}} {{x[0]}}
@@ -105,11 +116,5 @@ The last score is {{currentUser.results[currentUser.results.length-1].score}}
     
   </body>
 
-  <div ng-repeat= "x in all_users">
-    Name is {{x.name}}
-  <!-- 
-    <div ng-repeat = "y in x.results">
-      Score is {{y.score}}
-      Test name is {{y.test_name}}
-    </div>    -->
+</div>
 </html>
