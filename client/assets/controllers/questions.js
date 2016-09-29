@@ -62,10 +62,16 @@ $scope.getNextQuestion = function(x){
 		// console.log(callback)
 		if(callback.test_end == 'False'){
 			$scope.submit(callback.test_score);
+			$scope.test_score= callback.test_score;
+			$cookies.test_score = callback.test_score;
+			// console.log($cookies.test_score, "the test score after the test")
 			window.location = '#/';
 		}
 	})
 }
+
+$scope.test_score = $cookies.test_score
+console.log($scope.test_score);
 
 if($cookies.this_question){
 	$scope.this_question = $cookies.this_question;
