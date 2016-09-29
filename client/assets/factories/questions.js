@@ -1,16 +1,21 @@
 myApp.factory('questionsFactory', ['$http', function($http) {
 
-function QuestionsFactory(){
+// TODO:
+// FIX SCORE
+// DISPLAY QUESTIONS/ANSWERS AT THE END ALONGSIDE THEIR CHOSEN ANSWER
+// SHOW LEADERBOARD
+// EXPAND QUESTIONS/ANSWER
 
+function QuestionsFactory(){
+var temp = [];
 var score = 0;
-// var question = 1;
-// var answers = ['nothing', 'a', 'a', 'a', 'a','a']
 
 var index = 0;
+
 var geography = [{question:'How many continents are there on Earth?', options: ['1', '2', '3', '4', '5', '6', '7', '8'], answer:'7'},
 	{question:'What two nations is Mt. Everest located in?', options: ['China/Russia', 'China/Nepal', 'China/India', 'China/Tajikistan'], answer:'China/Nepal'},
 	{question:'Is the South Pole a continent?', options: ['Yes', 'No', 'Maybe', 'LIES!'], answer:'Yes'},
-	{question:'The Saharian Desert is located amongst which country?', options: ['Bengladesh', 'Yemen', 'Saudi Arabia', 'Mexico', 'Chile', 'Algeria', 'Australia'], answer:'How much?'}];
+	{question:'The Sahara Desert is located amongst which country?', options: ['Bengladesh', 'Yemen', 'Saudi Arabia', 'Mexico', 'Chile', 'Algeria', 'Australia'], answer:'How much?'}];
 
 	var sport = [{question:'How many points is a touchdown?', options: ['1pt', '3pt', '6pt'], answer:'6pt'},
 	{question:'What is the most popular sport in USA?', options: ['Baseball', 'Cricket', 'Football', 'Yelling', 'Soccer', 'Basketball'], answer:'Football'},
@@ -26,6 +31,7 @@ this.getFirstQuestion = function(subject, question_num, callback){
 
 this.getNextQuestion = function(answer, subject, callback){
 	var test_version = eval(subject);
+	// temp.push(answer) << FIX ANSWERS TO BE DISPLAYED AT THE END
 	if(test_version[index].answer == answer){
 		score+=1;
 		console.log('correct');
