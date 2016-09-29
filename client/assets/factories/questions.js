@@ -37,11 +37,8 @@ this.index = function(callback){
 }
 
 this.submit = function(answer){
-	// $cookies.
-	var id = '57ec01e718c97071a3167698';
-	console.log(answer);
-	console.log(question);
-	if ( answers[question] == answer){
+	var id = answer.user;
+	if ( answers[question] == answer.answer){
 	score+=1;
 	// console.log('correct')
 	}

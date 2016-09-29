@@ -32,8 +32,12 @@ $scope.get_score = function(){
 $scope.get_score();
 
 $scope.submit = function(){
-	answer = $scope.newAnswer.answer 
+	var user = $cookies.currentUser;
+	$scope.newAnswer.user = user._id;
+	answer = $scope.newAnswer
+	// console.log(answer); 
 	questionsFactory.submit(answer)
+
 }
 
 
