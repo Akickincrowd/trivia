@@ -31,6 +31,7 @@ $(document).ready(function (){
             $('#form1').submit(function (event){
               event.preventDefault();
     socket.emit("form_submitted", {name: $("#name").val(), comment: $("#comment").val()});
+    this.reset();
 });
 
  $('#last_score').submit(function (event){
@@ -42,19 +43,23 @@ $(document).ready(function (){
 socket.on('server_response', function (data){
     console.log('The server says: ');
     // console.log(data.name);
-    $("#output").append("<p>" + data.response.name + ":" + data.response.comment + "</p>");
+    $("#output").append("<br> <b>" + data.response.name + ":</b> " + data.response.comment );
 });
 
 socket.on('server_response_last_score', function (data){
     console.log('The server says:', data);
     
-    $("#output").text("<p>" + data.response.name + "'s last score was " + data.response.score + " in " + data.response.test_name + "</p>").val();
+    $("#output").append("<br> <b>" + data.response.name + "'s</b> last score was <b>" + data.response.score + "</b> in " + "<b>" + data.response.test_name + "</b>");
 });
   $('#leader_board').click(function(){
     window.location.href = '#/leaderboard';
   });
   $('#home').click(function(){
     window.location.href = '#/';
+  });
+
+   $('#change_user').click(function(){
+    window.location.href = '/login';
   });
 
 })
@@ -70,11 +75,37 @@ height: 350px;
 overflow: scroll;
 outline: 1px solid black;
 padding-left: 20px;
+margin-bottom: 20px;
 }
 #container{
   margin: auto;
-  width: 720px;
+  width: 90%;
   left: 50%;
+}
+
+#form1, #last_score{
+  vertical-align: top;
+  display: inline-block;
+}
+
+#partials, #chat{
+   vertical-align: top;
+  display: inline-block;
+  margin-top: 
+}
+
+#everything_else, #menubar{
+  vertical-align: top;
+  display: block;
+}
+
+#partials{
+  width: 50%;
+}
+
+#menubar{
+  margin-left: 20%;
+
 }
 
 
@@ -83,48 +114,50 @@ padding-left: 20px;
 </head>
 
 <body>
-
-<b>NAV BAR: </b>
-<button id="home">Home</button>
-<button id="leader_board">Leader Board</button>
-
 <div id= 'container'>
-  <div id="output">
-    <div id="scrollarea-content"> </div>
-  </div> 
- <!--  <textarea id ="output">
-  </textarea> -->
+  <div id="menubar">
+    <button id="change_user"> Change User </button>
+    <button id="home">Home</button>
+    <button id="leader_board">Leader Board</button>
+  </div>
 
-<div ng-controller="sessionController">
-
-
-
-<!-- <div ng-repeat= "x in currentUser.results">
-  {{x.test_name}} {{x.score}} {{x[0]}}
- </div> -->
-
-<form id= 'form1'>
-  <input id= "name" type="hidden" ng-value= "currentUser.name">
-  Chat <input id= "comment" type="text">
-  <button type= "submit"> Submit </button>
-</form> 
-
-<form id = "last_score">
-  <input id= "name" type="hidden" ng-value= "currentUser.name">
-  <input id= "score" ng-value= "currentUser.results[currentUser.results.length-1].score" type="hidden">
-  <input id= "test_name" ng-value= "currentUser.results[currentUser.results.length-1].test_name" type="hidden">
-
-   Share Score <button type= "Share Score"> Submit </button>
-
-
-</div>
-  
-
-
-    <div ng-view= ''>
+  <div id = "everything_else">
+    <div ng-view id= "partials">
     </div>
-    
-  </body>
+    <div id= "chat">
+      <div id="output">
+        <div id="scrollarea-content">
+        </div>
+      </div> 
+     <!--  <textarea id ="output">
+      </textarea> -->
 
-</div>
+      <div ng-controller="sessionController">
+
+
+
+      <!-- <div ng-repeat= "x in currentUser.results">
+        {{x.test_name}} {{x.score}} {{x[0]}}
+       </div> -->
+
+      <form id= 'form1'>
+        <input id= "name" type="hidden" ng-value= "currentUser.name">
+        <input id= "comment" type="text" placeholder="Chat">
+        <button type= "submit"> Submit </button>
+
+      </form> 
+
+      <form id = "last_score">
+        <input id= "name" type="hidden" ng-value= "currentUser.name">
+        <input id= "score" ng-value= "currentUser.results[currentUser.results.length-1].score" type="hidden">
+        <input id= "test_name" ng-value= "currentUser.results[currentUser.results.length-1].test_name" type="hidden">
+
+        <button type= "Share Score"> Share Score! </button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div> 
+    </body>
+
 </html>
