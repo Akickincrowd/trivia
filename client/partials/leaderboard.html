@@ -1,0 +1,17 @@
+<div ng-controller= "usersController">
+<table>
+	<thead>
+		<tr> 
+			<td> Name </td>
+			<td> Score </td>
+		</tr>
+	</thead>
+		<tr ng-repeat = "user in all_users ">
+			<span ng-if = "user.results.length > 0">
+			<td> {{user.name}}</td>
+<!-- 			<td> {{user.results.length}} </td>-->			
+			<td> <div ng-repeat ="x in user.results | limitTo: 3 | orderBy: '-score'"> {{x.score}} in {{x.test_name}} </div> </td>
+			</span>
+		</tr>	
+</table>			
+</div>	
