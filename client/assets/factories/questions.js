@@ -7,7 +7,7 @@ myApp.factory('questionsFactory', ['$http', function($http) {
 // EXPAND QUESTIONS/ANSWER
 
 function QuestionsFactory(){
-var temp = [];
+var user_answers = [];
 var score = 0;
 
 var index = 0;
@@ -23,7 +23,9 @@ var geography = [{question:'How many continents are there on Earth?', options: [
 	{question:'If NASCAR is a sport, then is "Fast & Furious: Tokyo Drift" a sporting movie?', options: ['Yes', 'No', 'wtf idk lmao'], answer:'wtf idk lmao'}];
 
 this.getFirstQuestion = function(subject, question_num, callback){
-
+	user_answers = [];
+	score = 0;
+	index = 0;
 	var test_version = eval(subject);
 	// console.log(test_version[question_num]);
 	callback(test_version[question_num]);
@@ -31,7 +33,7 @@ this.getFirstQuestion = function(subject, question_num, callback){
 
 this.getNextQuestion = function(answer, subject, callback){
 	var test_version = eval(subject);
-	// temp.push(answer) << FIX ANSWERS TO BE DISPLAYED AT THE END
+	user_answers.push(answer)
 	if(test_version[index].answer == answer){
 		score+=1;
 		console.log('correct');
@@ -44,7 +46,16 @@ this.getNextQuestion = function(answer, subject, callback){
 	} else {
 	// index = Math.floor(Math.random()*questions.length)
 	callback(test_version[index]);
+	}
 }
+// RETURNS TEST RESULTS BASED ON THE SUBJECT
+this.getTest = function(subject, callback){
+	var test_version = eval(subject);
+	callback(test_version);
+}
+// RETURNS THE USERS ANSWERS IN AN ARRAY
+this.getResults = function(callback){
+	callback(user_answers);
 }
 
 

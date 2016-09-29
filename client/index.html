@@ -14,6 +14,7 @@
 <script src="assets/controllers/users.js" charset="utf-8"></script>
 <script src="assets/controllers/questions.js" charset="utf-8"></script>
 <script src="assets/controllers/sessionController.js" charset="utf-8"></script>
+<script src="assets/controllers/resultsController.js" charset="utf-8"></script>
 <script src="assets/factories/users.js" charset="utf-8"></script>
 <script src="assets/factories/questions.js" charset="utf-8"></script>
 
@@ -49,7 +50,12 @@ socket.on('server_response_last_score', function (data){
     
     $("#output").text("<p>" + data.response.name + "'s last score was " + data.response.score + " in " + data.response.test_name + "</p>").val();
 });
-
+  $('#leader_board').click(function(){
+    window.location.href = '#/leaderboard';
+  });
+  $('#home').click(function(){
+    window.location.href = '#/';
+  });
 
 })
 
@@ -75,8 +81,12 @@ padding-left: 20px;
 </style>
 
 </head>
-<!--   <body style="background-image: url('./assets/images/facepalm.png'); background-size: 100% 100%;"> -->
+
 <body>
+
+<b>NAV BAR: </b>
+<button id="home">Home</button>
+<button id="leader_board">Leader Board</button>
 
 <div id= 'container'>
   <div id="output">

@@ -64,8 +64,17 @@ $scope.getNextQuestion = function(x){
 			$scope.submit(callback.test_score);
 			$scope.test_score= callback.test_score;
 			$cookies.test_score = callback.test_score;
+			// GETS TEST QUESTIONS/ANSWERS
+			questionsFactory.getTest(subject, function(callback){
+				console.log('test: ', callback);
+				$cookies.test = callback;
+			})
+			questionsFactory.getResults(function(callback){
+				console.log('answers: ', callback);
+				$cookies.results = callback;
+			})
 			// console.log($cookies.test_score, "the test score after the test")
-			window.location = '#/';
+			window.location = '#/test_results';
 		}
 	})
 }
@@ -76,6 +85,7 @@ console.log($scope.test_score);
 if($cookies.this_question){
 	$scope.this_question = $cookies.this_question;
 }
-// console.log($routeParams.test);
-// console.log($routeParams.id);
+// $scope.goHome = function(){
+// 	window.location = '#/';
+// }
 }]);
