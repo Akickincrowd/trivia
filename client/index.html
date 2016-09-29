@@ -29,15 +29,27 @@ $(document).ready(function (){
             // we'll write all the socket stuff after the above line!
             $('#form1').submit(function (event){
               event.preventDefault();
-    socket.emit("form_submitted", {name: $("#name").val()});
+    socket.emit("form_submitted", {name: $("#name").val(), comment: $("#comment").val()});
+});
+
+ $('#last_score').submit(function (event){
+              event.preventDefault();
+    socket.emit("form_submitted_last_score", {name: $("#name").val(), score: $("#score").val(), test_name: $("#test_name").val() });
 });
 
 
-socket.on('server_response', function (info){
+socket.on('server_response', function (data){
     console.log('The server says: ');
-    console.log(info);
-    $("#output").append("<p>" + info.response + "</p>");
+    // console.log(data.name);
+    $("#output").append("<p>" + data.response.name + ":" + data.response.comment + "</p>");
 });
+
+socket.on('server_response_last_score', function (data){
+    console.log('The server says:', data);
+    
+    $("#output").append("<p>" + data.response.name + "'s last score was " + data.response.score + "</p>");
+});
+
 
 })
 
@@ -56,22 +68,35 @@ overflow: scroll;
 </head>
   <body>
 
-    <button> Test button </button>
-   <!--   <a href= "#/users"> Link to users </a> <br>
-     <a href= "#/"> Link to Home </a> -->
 
 <div id= "output">
 output div
 </div>
 <div ng-controller="sessionController">
-{{currentUser}}
-</div>
-<a href= "/#/question1"> Question 1 </a>
-<form id= 'form1'>
-  Name <input id= "name" type="text">
-  <button type= "submit"> Submit </button>
-</form>  
 
+The last test name is {{currentUser.results[currentUser.results.length-1].test_name}}
+<br>
+The last score is {{currentUser.results[currentUser.results.length-1].score}}
+
+<!-- <div ng-repeat= "x in currentUser.results">
+  {{x.test_name}} {{x.score}} {{x[0]}}
+ </div> -->
+
+<form id= 'form1'>
+  <input id= "name" type="hidden" ng-value= "currentUser.name">
+  Chat <input id= "comment" type="text">
+  <button type= "submit"> Submit </button>
+</form> 
+
+<form id = "last_score">
+  <input id= "name" type="hidden" ng-value= "currentUser.name">
+  <input id= "score" ng-value= "currentUser.results[currentUser.results.length-1].score" type="hidden">
+  <input id= "test_name" ng-value= "currentUser.results[currentUser.results.length-1].test_name" type="hidden">
+
+   Share Score <button type= "Share Score"> Submit </button>
+
+
+</div>
   
 
 
@@ -79,4 +104,12 @@ output div
     </div>
     
   </body>
+
+  <div ng-repeat= "x in all_users">
+    Name is {{x.name}}
+  <!-- 
+    <div ng-repeat = "y in x.results">
+      Score is {{y.score}}
+      Test name is {{y.test_name}}
+    </div>    -->
 </html>

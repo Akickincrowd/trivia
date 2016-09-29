@@ -23,10 +23,13 @@ $scope.get_score = function(){
 
 $scope.get_score();
 
+
+
 $scope.submit = function(score){
 	console.log(score);
 	// answer = $scope.newAnswer.answer 
 	// questionsFactory.submit(answer)
+
 }
 
 $scope.getQuestion = function(subject, question_num){

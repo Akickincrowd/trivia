@@ -42,13 +42,16 @@ var server = app.listen(8000, function(){
 var io = require('socket.io').listen(server)
 
 io.sockets.on('connection', function (socket) {
-  // console.log("WE ARE USING SOCKETS!");
-  // console.log(socket.id);
-  //all the socket code goes in here!
+
+socket.on('form_submitted_last_score', function(data){
+  console.log(data);
+  io.emit('server_response_last_score', {response:data})
+})
+ 
   socket.on("form_submitted", function (data){
 
     console.log(data);
-    io.emit('server_response', {response: data.name});
+    io.emit('server_response', {response: data});
 })
 
 })

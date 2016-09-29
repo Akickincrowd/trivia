@@ -79,13 +79,7 @@ this.index = function(callback){
 }
 
 this.submit = function(answer){
-	// $cookies.
-	console.log(answer);
-	console.log(question);
-	if ( answers[question] == answer){
-	score+=1;
-	// console.log('correct')
-	}
+
 	console.log(score);
 	$http.puts('/scores', score).then(function(returned_data){
 		console.log(returned_data);
