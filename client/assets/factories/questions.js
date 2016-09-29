@@ -19,7 +19,7 @@ var geography = [{question:'how fast am I going?', options: ['30mph', '20mph', '
 
 this.getFirstQuestion = function(subject, question_num, callback){
 	var test_version = eval(subject);
-	console.log(test_version[question_num]);
+	// console.log(test_version[question_num]);
 	callback(test_version[question_num]);
 }
 
@@ -64,22 +64,21 @@ this.get_score = function(callback){
 this.create = function(form_data){
 	console.log(form_data);
 	$http.post('/users', form_data).then(function(returned_data){
-        console.log(returned_data);
+        // console.log(returned_data);
       });  
 }
 
 this.index = function(callback){
 	$http.get('/users').then(function(returned_data){
-		console.log(returned_data.data);
+		// console.log(returned_data.data);
 		callback(returned_data.data);
 	})	
 }
 
-this.submit = function(answer){
-
-	console.log(score);
-	$http.puts('/scores', score).then(function(returned_data){
-		console.log(returned_data);
+this.submit = function(user){
+	console.log(user);
+	$http.put('/users/' + user._id, user).then(function(returned_data){
+		console.log(returned_data, "returned data from update");
 	})
 }
 

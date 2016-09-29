@@ -26,14 +26,19 @@ $scope.get_score();
 
 
 $scope.submit = function(score){
-	console.log(score);
-	// answer = $scope.newAnswer.answer 
-	// questionsFactory.submit(answer)
+	
+	// console.log($cookies.currentUser._id);
+	user= {
+	 _id: $cookies.currentUser._id,
+	score: score,
+	test_name: $cookies.subject
+	} 
+	questionsFactory.submit(user);
 
 }
 
 $scope.getQuestion = function(subject, question_num){
-	console.log(subject)
+	// console.log(subject)
 	// console.log(question_id)
 	$cookies.subject = subject;
 	// var subject = eval(subjectTopic);
@@ -42,19 +47,19 @@ $scope.getQuestion = function(subject, question_num){
 	questionsFactory.getFirstQuestion(subject, question_num, function(question){
 		$cookies.this_question = question;
 		// $cookies.subject = eval(subject);
-		console.log(question);
+		
 		// console.log($scope.this_question);
 		window.location = '#/question'
 	})
 }
 
 $scope.getNextQuestion = function(x){
-	console.log(x)
+	// console.log(x)
 	var subject = $cookies.subject;
 	// console.log($cookies.this_question)
 	questionsFactory.getNextQuestion(x, subject, function(callback){
 		$scope.this_question = callback;
-		console.log(callback)
+		// console.log(callback)
 		if(callback.test_end == 'False'){
 			$scope.submit(callback.test_score);
 			window.location = '#/';
